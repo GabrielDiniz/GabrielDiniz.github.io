@@ -1,0 +1,110 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<a id="update" onclick="init()"><canvas id="canvas" width=936 height=936></a>
+		<a id="link"></a>
+		<script type="text/javascript">
+			function rand(min, max) {
+				return Math.floor(Math.random() * (max - min + 1) ) + min;
+			}
+			function toRadians (angle) {
+				return angle * (Math.PI / 180);
+			}
+			function rgbToHex(color) {
+				return "#"+color.r.toString(16).padStart(2, '0')+color.g.toString(16).padStart(2, '0')+color.b.toString(16).padStart(2, '0');
+			}
+			function draw(line,color,colorFactor,n){
+				line.yf=Math.round(line.yi-line.r*Math.cos(toRadians(line.t)));
+				line.xf=Math.round(line.xi+line.r*Math.sin(toRadians(line.t)));
+				if(n==0){console.log(color,colorFactor);}	
+				n++;
+				if(line.xi<=936 &&line.yi<=936 &&line.xf<=936 &&line.yf<=936 && line.xi>=0 &&line.yi>=0 &&line.xf>=0 &&line.yf>=0 && line.r > 936/275){
+					var c = document.getElementById("canvas");
+					var ctx = c.getContext("2d");
+				//ctx.lineWidth = 936/1001;
+				ctx.lineWidth = Math.max((936/10)/n*0.20,(936/1001));
+				ctx.lineCap = "round";
+				if(true/*rand(0,1)==0*/){
+					if (rand(0,5)!=0) {
+						var cr=Math.max(Math.min(Math.round(color.r+colorFactor.r),255),0);
+						var cg=Math.max(Math.min(Math.round(color.g+colorFactor.g),255),0);
+						var cb=Math.max(Math.min(Math.round(color.b+colorFactor.b),255),0);
+					}else{
+						var cr=Math.round(color.r+colorFactor.r)%255;
+						var cg=Math.round(color.g+colorFactor.g)%255;
+						var cb=Math.round(color.b+colorFactor.b)%255;
+						if(cr<0){
+							cr=255;
+						}
+						if(cg<0){
+							cg=255;
+						}
+						if(cb<0){
+							cb=255;
+						}
+					}
+					color.r=cr;
+					color.g=cg;
+					color.b=cb;
+
+				}else{
+					var cr=color.r;
+					var cg=color.g;
+					var cb=color.b;
+					
+				}
+				ctx.strokeStyle=(rgbToHex(color));
+				if(n==1){console.log(color,ctx.strokeStyle);}
+				ctx.beginPath();
+				ctx.moveTo(line.xi, line.yi);
+				ctx.lineTo(line.xf, line.yf);
+				ctx.stroke();
+				
+				draw({
+					xi:line.xf,
+					yi:line.yf,
+					r:Math.floor(line.r*rand(7,9)/10),
+					t:Math.round((line.t+rand(10,35))+n*0.75%360)
+				},color,colorFactor,n);
+				color.r=cr;
+				color.g=cg;
+				color.b=cb;
+				draw({
+					xi:line.xf,
+					yi:line.yf,
+					r:Math.floor(line.r*rand(7,9)/10),
+					t:Math.round((line.t-rand(10,35))-n*0.75%360)
+				},color,colorFactor,n);
+				
+			}
+			
+		}
+
+		function init() {
+			// body...
+			var c = document.getElementById("canvas");
+			var ctx = c.getContext("2d");
+			ctx.fillStyle = "#000000";
+			ctx.fillRect(0, 0, 936, 936);
+
+			c1=0;
+			c2=25;
+			draw({
+				xi:936/2,
+				yi:936,
+				r:936/7.5,
+				t:0
+			},
+			{r:rand(0,255),g:rand(0,155),b:rand(0,55)},
+			{r:rand(c1,c2)-Math.round(c2/2),g:rand(c1,c2)-Math.round(c2/2),b:rand(c1,c2)-Math.round(c2/2)}
+			,0);
+		}
+		init();
+	</script>
+</body>
+</html>
