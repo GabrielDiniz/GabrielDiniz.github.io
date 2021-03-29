@@ -1,0 +1,71 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<a id="update" onclick="init()"><canvas id="canvas" width=936 height=936></a>
+		<a id="link"></a>
+		<script type="text/javascript" src="util.js"></script>
+
+		<script type="text/javascript">
+			
+
+			function draw(color){
+				
+				//var cp1x = 0, cp1y =936, cp2x = 936, cp2y = 936, x2= 936, y2=936;
+				var cp1x = rand(90,840), cp1y =rand(90,840), cp2x = rand(90,840), cp2y = rand(90,840), x1= rand(-50,50), y1=rand(-50,50), x2= rand(-50,50), y2=rand(-50,50);
+				if (x1<0) {
+					x1=536+x1;
+				}
+				if (x2<0) {
+					x2=536+x2;
+				}
+				if (y1<0) {
+					y1=536+y1;
+				}
+				if (y2<0) {
+					y2=536+y2;
+				}
+				x1+=200;
+				x2+=200;
+				y1+=200;
+				y2+=200;
+
+				var c = document.getElementById("canvas");
+				var ctx = c.getContext("2d");
+
+				ctx.lineWidth = 1;
+				ctx.lineCap = "round";
+				for (var i = 0; i < 500; i++) {
+					nextRainbowColor(color,100);
+					ctx.strokeStyle=(rgbToHex(color));
+					ctx.beginPath();
+					ctx.moveTo(x1, y1);
+					ctx.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x2,y2);
+					ctx.stroke();
+					cp1x= cp1x +rand(0,25);
+					cp1y= cp1y +rand(-10,0);
+					cp2x= cp2x +rand(-25,0);
+					cp2y= cp2y +rand(-10,0);
+
+				}
+				
+			}
+
+			function init() {
+
+				var c = document.getElementById("canvas");
+				var ctx = c.getContext("2d");
+				ctx.fillStyle = "#000000";
+				ctx.fillRect(0, 0, 936, 936);
+
+				draw({r:255,g:0,b:0},0,936);
+				
+			}
+			init();
+		</script>
+	</body>
+	</html>
