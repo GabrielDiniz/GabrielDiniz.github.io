@@ -1,0 +1,154 @@
+<canvas id="myCanvas" height="900" width="900"></canvas>
+<div style="float: right;" id="parametros">
+	<div>
+		<label for="n">Numero de discos</label>
+		<input type="number" name="n" value="2" min="2" onchange="shuffle(this)" style="width: 33px;" id="n">
+	</div>
+	<div id="discos">
+		
+	</div>
+	<div>
+		<label for="voltas">Voltas</label>
+		<input type="number" name="voltas" value="100" min="1" onchange="update()" style="width: 100px;">
+	</div>
+	<div>
+		
+		<input type="button" name="b" value="Sortear" onclick="shuffle(document.getElementById('n'))" style="width: 100px;">
+	</div>
+	
+</div>
+<script type="text/javascript">
+	
+function shuffle(n){
+	modifiers = [-0.01,-0.02,0,0.01,0.02,0.48,0.49,0.01,0,0,0,0,0,0,0];
+	ratios = [0,1,2,3,4,5,6,7];
+	div = document.getElementById("discos");
+	div.innerHTML='';
+	tValue=1000;
+	for (var i = 1; i <= n.value; i++) {
+		div.innerHTML += '\
+		<div>\
+			<label for="n">Tamanho disco '+(i)+'</label>\
+			<input type="number" name="t[]" value="'+tValue+'" min=1 onchange="update()" style="width: 100px;">\
+		</div>\
+		';
+		tValue = Math.floor((Math.random()*1.5)*tValue);
+	}
+	for (var i = 1; i < n.value; i++) {
+		ratio = ratios[Math.floor(Math.random()*8)];
+		if (ratio===0) {
+			ratio=Math.floor(Math.random()*2 +1)/100;
+		}else{
+			ratio+=modifiers[Math.floor(Math.random()*15)];
+		}
+
+		div.innerHTML += '\
+		<div>\
+			<label for="n">Razão discos '+i+'/'+(i+1)+'</label>\
+			<input type="number" name="r[]" min="0.01" value="'+ratio+'" step="0.01" onchange="update()" style="width: 100px;">\
+		</div>\
+		';
+	}
+	update();
+}
+
+
+async function drawSpirograph(context, cx, cy,radius, ratios , laps) {
+	var x, y, theta;
+	var colors = generateRainbowPalette(laps);
+	var color = colors[0];
+	ratios.unshift(1);
+
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.beginPath();
+	context.moveTo(cx*2, cy);
+	radius = radius.map(a=>{
+		return a/radius.reduce((a,b)=>a+b)
+	});
+
+
+	for (theta = 0; theta <= Math.PI * 2*laps; theta += 0.001) {
+		context.beginPath();
+		context.moveTo(x, y);
+		x=cx;
+		y=cy;
+		for (var i = radius.length - 1; i >= 0; i--) {
+			x+= radius[i] *cx* Math.cos(theta*ratios[i]);
+			y+= radius[i] *cy* Math.sin(theta*ratios[i]);
+		}
+		context.strokeStyle = "#000000";//color;
+		context.strokeStyle = color;
+
+		context.lineTo(x, y);
+		context.stroke();		
+		if (color !== colors[Math.floor(theta/(Math.PI * 2))]) {
+			color = colors[Math.floor(theta/(Math.PI * 2))];
+		}
+	}
+	
+
+
+}
+
+// Get drawing context
+	var canvas = document.getElementById('myCanvas');
+function update(){
+	var context = canvas.getContext('2d');
+
+	t = Array.from(document.getElementsByName('t[]'));
+	r = Array.from(document.getElementsByName('r[]'));
+	voltas = document.getElementsByName('voltas')
+
+
+	drawSpirograph(context, canvas.width / 2, canvas.height / 2,  t.map(i=>i.value*1),r.map(i=>i.value*1),voltas[0].value*1);
+}
+
+function generateRainbowPalette(numColors)
+    {
+        var toRet=[];
+        var n = numColors;
+        for(var i = 0; i< numColors; i++)
+        {
+            var red = 255;
+            var green = 0;
+            var blue = 0;
+            //red: (first quarter)
+            if (i <= n / 4)
+            {
+                red = 255;
+                green = Math.floor(255 / (n / 4) * i);
+                blue = 0;
+            }
+            else if (i <= n / 2)  //2nd quarter
+            {
+                red = Math.floor((-255)/(n/4)*i + 255 * 2);
+                green = 255;
+                blue = 0;
+            }
+            else if (i <= (.75)*n)
+            { // 3rd quarter
+                red = 0;
+                green = 255;
+                blue = Math.floor(255 / (n / 4) * i + (-255 * 2));
+            }
+            else if(i > (.75)*n)
+            {
+                red = 0;
+                green = Math.floor(-255 * i / (n / 4) + (255 * 4));
+                blue = 255;
+            }
+
+            //generate hex string:
+            var redHex = red.toString(16).padStart(2,'0');
+            var greenHex = green.toString(16).padStart(2,'0');
+            var blueHex = blue.toString(16).padStart(2,'0');
+
+            var color = "#"+redHex+greenHex+blueHex;
+        
+         
+            toRet.push(color);
+        }
+        return toRet;
+    }
+    shuffle(document.getElementById('n'));
+</script>
