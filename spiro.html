@@ -1,4 +1,4 @@
-<canvas id="myCanvas" height="900" width="900" onclick="shuffle()"></canvas>
+<canvas id="myCanvas" height="936" width="936" onclick="shuffle()"></canvas>
 <div style="float: right;" id="parametros">
 	<div>
 		<label for="n">Numero de discos</label>
@@ -63,8 +63,8 @@ function delay(milliseconds){
 		var colors = generateRainbowPalette(laps);
 		var color = colors[0];
 		ratios.unshift(1);
-
-		context.clearRect(0, 0, canvas.width, canvas.height);
+		context.fillStyle = "#000000";
+		context.fillRect(0, 0, canvas.width, canvas.height);
 		context.beginPath();
 		context.moveTo(cx*2, cy);
 		radius = radius.map(a=>{
