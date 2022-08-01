@@ -8,16 +8,9 @@
 <body>
 	<a id="update" onclick="init()"><canvas id="canvas" width=936 height=936></a>
 		<a id="link"></a>
+		<script type="text/javascript" src="util.js"></script>
 		<script type="text/javascript">
-			function rand(min, max) {
-				return Math.floor(Math.random() * (max - min + 1) ) + min;
-			}
-			function toRadians (angle) {
-				return angle * (Math.PI / 180);
-			}
-			function rgbToHex(color) {
-				return "#"+color.r.toString(16).padStart(2, '0')+color.g.toString(16).padStart(2, '0')+color.b.toString(16).padStart(2, '0');
-			}
+			
 			function draw(line,color,colorFactor,n){
 				line.yf=Math.round(line.yi-line.r*Math.cos(toRadians(line.t)));
 				line.xf=Math.round(line.xi+line.r*Math.sin(toRadians(line.t)));
