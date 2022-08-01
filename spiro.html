@@ -12,15 +12,19 @@
 		<input type="number" name="voltas" value="100" min="1" onchange="update()" style="width: 100px;">
 	</div>
 	<div>
+		<label for="color"> Colorido <input type="checkbox" name="color" id="color" onclick="update()" ></label>
+	</div>
+	<div>
 		
 		<input type="button" name="b" value="Sortear" onclick="shuffle()" style="width: 100px;">
+		<input type="button" name="b" value="Atualizar" onclick="update()" style="width: 100px;">
 	</div>
 	
 </div>
 <script type="text/javascript">
 	
 	function shuffle(){
-		n=document.getElementById('n')
+		n=document.getElementById('n');
 		modifiers = [-0.01,-0.02,0,0.01,0.02,0.48,0.49,0.01,0,0,0,0,0,0,0];
 		ratios = [0,1,2,3,4,5,6,7];
 		div = document.getElementById("discos");
@@ -61,6 +65,7 @@ function delay(milliseconds){
 	async function drawSpirograph(context, cx, cy,radius, ratios , laps) {
 		var x, y, theta;
 		var colors = generateRainbowPalette(laps);
+		colorido = document.getElementById('color').checked;
 		var color = colors[0];
 		ratios.unshift(1);
 		context.fillStyle = "#000000";
@@ -75,8 +80,11 @@ function delay(milliseconds){
 		j=0;
 		colorShift = Math.floor(Math.random()*colors.length);
 		while(laps>j){
-			context.strokeStyle = "#000000";
-			context.strokeStyle = colors[(j+colorShift)%colors.length];
+			if (colorido) {
+				context.strokeStyle = colors[(j+colorShift)%colors.length];
+			}else{
+				context.strokeStyle = "#ffffff";
+			}
 			j++;
 			for (theta = theta; theta <= Math.PI * 2*j; theta += 0.001) {
 				context.beginPath();
@@ -84,8 +92,8 @@ function delay(milliseconds){
 				x=cx;
 				y=cy;
 				for (var i = radius.length - 1; i >= 0; i--) {
-					x+= radius[i] *cx* Math.cos(theta*ratios[i]);
-					y+= radius[i] *cy* Math.sin(theta*ratios[i]);
+					x-= radius[i] *cx* Math.cos(theta*ratios[i]);
+					y-= radius[i] *cy* Math.sin(theta*ratios[i]);
 				}
 				context.lineTo(x, y);
 				context.stroke();		
@@ -123,37 +131,42 @@ function delay(milliseconds){
 			var green = 0;
 			var blue = 0;
             //red: (first quarter)
-            if (i <= (.2)*n )
+            if (i <= (1/6)*n )
             {
             	red = 255;
-            	green = Math.floor(255 / (n / 5) * i);
+            	green = Math.floor(255 / (n / 6) * i);
             	blue = 0;
             }
-            else if (i <= (0.4)*n)  //2nd quarter
+            else if (i <= (2/6)*n)  //2nd quarter
             {
-            	red = Math.floor((-255)/(n/5)*i + 255 * 2);
+            	red = Math.floor((-255)/(n/6)*i + 255 * 2);
             	green = 255;
             	blue = 0;
             }
-            else if (i <= (.6)*n)
+            else if (i <= (3/6)*n)
             { // 3rd quarter
             	red = 0;
             	green = 255;
-            	blue = Math.floor(255 / (n / 5) * i + (-255 * 2));
+            	blue = Math.floor(255 / (n / 6) * i + (-255 * 2));
             }
-            else if(i <= (.8)*n)
+            else if(i <= (4/6)*n)
             {
             	red = 0;
-            	green = Math.floor(-255 * i / (n / 5) + (255 * 4));
+            	green = Math.floor(-255 * i / (n / 6) + (255 * 4));
             	blue = 255;
             }
-            else if(i > (.8)*n)
+            else if(i <= (5/6)*n)
             {
-            	debugger;
-            	red = Math.floor(255 / (n / 5) * i + (-255 * 4));
+            	red = Math.floor(255 / (n / 6) * i + (-255 * 4));
             	green = 0;
             	blue = 255;
+            }else if(i > (5/6)*n)
+            {
+            	red = 255;
+            	green = 0
+            	blue = Math.floor(-255 * i / (n / 6) + (255 * 6));;
             }
+
 
             //generate hex string:
             var redHex = red.toString(16).padStart(2,'0');
