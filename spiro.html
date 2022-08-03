@@ -13,6 +13,7 @@
 	</div>
 	<div>
 		<label for="color"> Colorido <input type="checkbox" name="color" id="color" onclick="update()" ></label>
+		<label for="color"> Animação <input type="checkbox" name="animacao" id="animacao" onclick="update()" ></label>
 	</div>
 	<div>
 		
@@ -29,7 +30,7 @@
 		ratios = [0,1,2,3,4,5,6,7];
 		div = document.getElementById("discos");
 		div.innerHTML='';
-		tValue=1000;
+		tValue=100+20*n.value;
 		for (var i = 1; i <= n.value; i++) {
 			div.innerHTML += '\
 			<div>\
@@ -66,6 +67,7 @@ function delay(milliseconds){
 		var x, y, theta;
 		var colors = generateRainbowPalette(laps);
 		colorido = document.getElementById('color').checked;
+		animacao = document.getElementById('animacao').checked;
 		var color = colors[0];
 		ratios.unshift(1);
 		context.fillStyle = "#000000";
@@ -86,7 +88,7 @@ function delay(milliseconds){
 				context.strokeStyle = "#ffffff";
 			}
 			j++;
-			for (theta = theta; theta <= Math.PI * 2*j; theta += 0.001) {
+			for (theta = theta; theta <= Math.PI * 2*j; theta += 0.005) {
 				context.beginPath();
 				context.moveTo(x, y);
 				x=cx;
@@ -97,9 +99,12 @@ function delay(milliseconds){
 				}
 				context.lineTo(x, y);
 				context.stroke();		
+
 			}
 
-			await delay(j==1?500:35);
+			if(animacao){
+				await delay(j==1?500:2);
+			}
 			
 		}
 
