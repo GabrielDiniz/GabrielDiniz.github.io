@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Treinador 24h · App para personal trainer</title>
+<meta name="description" content="Treino com método para personal e aluno: carga, evolução e alunos em dia. Funciona sem internet, sem anúncios.">
+<link rel="canonical" href="https://gabrieldiniz.com/treinador-24h-app.html">
+<meta property="og:title" content="Treinador 24h">
+<meta property="og:description" content="O acompanhamento não para quando a aula acaba.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo: #4f46e5; --indigo-escuro: #3730a3; --verde: #34d399;
+    --fundo: #f8fafc; --cartao: #ffffff; --texto: #0f172a; --suave: #475569; --borda: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fundo); color: var(--texto); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: inherit; }
+  .faixa { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  h1, h2 { font-family: "Space Grotesk", system-ui, sans-serif; line-height: 1.1; }
+  .topo { background: var(--indigo); color: #fff; }
+  .topo .faixa { display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: center; padding-top: 64px; padding-bottom: 64px; }
+  .marca { width: 132px; aspect-ratio: 1; display: grid; place-items: center; border: 5px solid #fff; border-radius: 30px; box-shadow: 0 18px 50px rgba(30, 27, 75, .35); font: 700 33px/1 "Space Grotesk", sans-serif; }
+  .marca span { color: #6ee7b7; }
+  .topo h1 { font-size: clamp(40px, 7vw, 64px); margin: 0; }
+  .topo p { margin: 12px 0 0; font-size: clamp(19px, 2.6vw, 24px); color: #e0e7ff; max-width: 34ch; }
+  .topo b { color: #6ee7b7; font-weight: 600; }
+  .botao { display: inline-block; margin-top: 26px; padding: 13px 22px; border-radius: 8px; background: #fff; color: var(--indigo-escuro); font-weight: 700; text-decoration: none; }
+  .botao:hover { background: #eef2ff; }
+  .botao:focus-visible { outline: 3px solid var(--verde); outline-offset: 3px; }
+  section { padding: 56px 0 8px; }
+  section h2 { font-size: 30px; margin: 0 0 20px; }
+  .grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cartao { background: var(--cartao); border: 1px solid var(--borda); border-radius: 8px; padding: 22px 22px 14px; }
+  .cartao h3 { margin: 0 0 8px; font-size: 18px; }
+  .cartao ul { margin: 0; padding-left: 18px; color: var(--suave); }
+  .cartao li { margin-bottom: 8px; }
+  .telas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 640px; }
+  .tela { max-width: 280px; width: 100%; margin: 0 auto; overflow: hidden; border: 1px solid #cbd5e1; border-radius: 24px; background: #fff; box-shadow: 0 16px 36px rgba(15, 23, 42, .12); color: #0f172a; }
+  .tela-topo { padding: 15px 16px 12px; background: #eef2ff; border-bottom: 1px solid #e2e8f0; }
+  .tela-topo strong, .tela-topo span { display: block; }
+  .tela-topo span { color: #64748b; font-size: 12px; }
+  .tela-corpo { padding: 16px; }
+  .exercicio { padding: 0 0 14px; margin-bottom: 14px; border-bottom: 1px solid #e2e8f0; }
+  .exercicio:last-child { padding: 0; margin: 0; border: 0; }
+  .exercicio strong { display: block; font-size: 14px; }
+  .exercicio span { color: #64748b; font-size: 12px; }
+  .medida { display: flex; justify-content: space-between; gap: 8px; margin-top: 9px; font-size: 12px; }
+  .medida b { color: #3730a3; }
+  .nota { color: var(--suave); max-width: 70ch; }
+  footer { margin-top: 64px; border-top: 1px solid var(--borda); padding: 24px 0 40px; color: var(--suave); font-size: 15px; }
+  footer .faixa { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
+  @media (max-width: 760px) {
+    .topo .faixa { grid-template-columns: 1fr; gap: 24px; padding-top: 44px; padding-bottom: 48px; }
+    .marca { width: 96px; border-radius: 22px; font-size: 27px; }
+    .grade { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 460px) {
+    .telas { grid-template-columns: 1fr; }
+    .tela { max-width: 300px; }
+  }
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="faixa">
+    <div class="marca" role="img" aria-label="Treinador 24h"><span>24</span>h</div>
+    <div>
+      <h1>Treinador 24h</h1>
+      <p>O acompanhamento <b>não para</b> quando a aula acaba.</p>
+      <a class="botao" href="https://play.google.com/store/apps/details?id=com.gabrieldiniz.treinador24h">Baixar no Google Play</a>
+    </div>
+  </div>
+</header>
+
+<main class="faixa">
+  <section>
+    <h2>Treino com método, para o personal e para o aluno</h2>
+    <p class="nota">A carga certa, o volume na medida e o histórico de cada treino ficam no celular, sempre em dia. Para o personal trainer que acompanha vários alunos e para quem treina por conta própria.</p>
+    <div class="grade">
+      <article class="cartao">
+        <h3>Acompanhamento completo</h3>
+        <ul>
+          <li>Cadastre alunos, objetivos e nível de experiência.</li>
+          <li>Organize planos e exercícios por aluno.</li>
+          <li>Consulte o histórico para acompanhar a evolução.</li>
+        </ul>
+      </article>
+      <article class="cartao">
+        <h3>Treino com contexto</h3>
+        <ul>
+          <li>Registre séries, repetições, cargas e esforço percebido.</li>
+          <li>Acompanhe volume, peso e medidas corporais.</li>
+          <li>Tenha restrições, lesões e prontidão à mão.</li>
+        </ul>
+      </article>
+      <article class="cartao">
+        <h3>Seu trabalho, no seu aparelho</h3>
+        <ul>
+          <li>Use sem internet, sem anúncios e sem rastreamento.</li>
+          <li>Exporte os dados e compartilhe relatórios quando quiser.</li>
+          <li>Faça backup opcional na sua conta Google Drive.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Como é por dentro</h2>
+    <div class="telas" aria-label="Prévia das telas do app">
+      <div class="tela" role="img" aria-label="Prévia de um treino em andamento com cargas e repetições">
+        <div class="tela-topo"><strong>Treino de hoje</strong><span>Treino A · Em andamento</span></div>
+        <div class="tela-corpo">
+          <div class="exercicio"><strong>Agachamento livre</strong><span>3 séries · 8 a 10 repetições</span><div class="medida"><span>Série 1</span><b>40 kg · 10 reps</b></div></div>
+          <div class="exercicio"><strong>Supino reto</strong><span>3 séries · 8 a 12 repetições</span><div class="medida"><span>Série 1</span><b>30 kg · 10 reps</b></div></div>
+          <div class="exercicio"><strong>Remada baixa</strong><span>3 séries · 10 a 12 repetições</span><div class="medida"><span>Série 1</span><b>25 kg · 12 reps</b></div></div>
+        </div>
+      </div>
+      <div class="tela" role="img" aria-label="Prévia de um resumo semanal de volume por grupo muscular">
+        <div class="tela-topo"><strong>Volume semanal</strong><span>Resumo por grupo muscular</span></div>
+        <div class="tela-corpo">
+          <div class="exercicio"><strong>Peitoral</strong><div class="medida"><span>12 séries</span><b>Na meta</b></div></div>
+          <div class="exercicio"><strong>Costas</strong><div class="medida"><span>14 séries</span><b>Na meta</b></div></div>
+          <div class="exercicio"><strong>Quadríceps</strong><div class="medida"><span>10 séries</span><b>Em evolução</b></div></div>
+          <div class="exercicio"><strong>Ombros</strong><div class="medida"><span>8 séries</span><b>Na meta</b></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Privacidade</h2>
+    <p class="nota">Funciona sem internet. Os dados dos alunos ficam no seu aparelho: o app não tem servidor, anúncios nem rastreamento. Detalhes na <a href="https://gabrieldiniz.com/treinador-24h-privacy-policy.html">política de privacidade</a>. Para apagar dados, veja a <a href="https://gabrieldiniz.com/treinador-24h-data-deletion.html">exclusão de dados</a>.</p>
+  </section>
+
+  <section>
+    <h2>Suporte</h2>
+    <p class="nota">Dúvidas, sugestões ou problemas: escreva para <a href="mailto:contato@gabrieldiniz.com">contato@gabrieldiniz.com</a>.</p>
+    <p class="nota">O Treinador 24h é uma ferramenta de apoio ao profissional de educação física. Não substitui avaliação médica nem orientação de nutricionista.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="faixa">
+    <span>© 2026 GD Mobile Inc.</span>
+    <span><a href="https://gabrieldiniz.com/treinador-24h-privacy-policy.html">Política de privacidade</a> · <a href="https://gabrieldiniz.com/treinador-24h-data-deletion.html">Exclusão de dados</a></span>
+  </div>
+</footer>
+</body>
+</html>
