@@ -37,7 +37,7 @@
 <p class="data">Desenvolvedor: GD Mobile Inc. · App: <a href="https://gabrieldiniz.com/treinador-24h-app.html">Treinador 24h</a> (com.gabrieldiniz.treinador24h)</p>
 
 <div class="destaque">
-  <p>O Treinador 24h não tem contas nem servidor. Os dados ficam só no seu aparelho, e o desenvolvedor não guarda nenhuma cópia. Por isso, a exclusão é feita por você, no próprio aparelho, e vale na hora.</p>
+  <p>Por padrão, os dados do Treinador 24h ficam só no seu aparelho, e a exclusão é feita por você, na hora. Se você conectou uma conta Google, pode haver também um backup no seu Google Drive e, se usou a sincronização entre treinador e aluno, um cadastro e uma cópia cifrada no servidor. Abaixo, como apagar cada um.</p>
 </div>
 
 <h2>Apagar um aluno e todo o histórico dele</h2>
@@ -46,29 +46,42 @@
   <li>Vá até a aba <b class="botao">Perfil</b> e desça até a seção <b class="botao">Dados e gestão</b>.</li>
   <li>Toque em <b class="botao">Excluir aluno</b>, digite o nome do aluno para confirmar e toque em <b class="botao">Excluir definitivamente</b>.</li>
 </ol>
-<p>São apagados o perfil, a triagem de prontidão, as restrições e lesões, os planos, os treinos, as cargas, o peso e as medidas desse aluno. Não dá para desfazer.</p>
+<p>São apagados o perfil, a triagem de prontidão, as restrições e lesões, os planos, os treinos, as cargas, o peso, as medidas e os horários da agenda desse aluno. Não dá para desfazer. Se o aluno estava conectado, a conexão é encerrada e a cópia cifrada no servidor é apagada.</p>
 <p>Se quiser entregar uma cópia ao aluno antes, use <b class="botao">Exportar dados (JSON)</b>, na mesma seção.</p>
 
 <h2>Apagar todos os dados do app</h2>
 <p>Você pode fazer de qualquer um destes jeitos:</p>
 <ul>
   <li>desinstalar o app: o Android apaga o banco de dados junto;</li>
-  <li>sem desinstalar: no Android, abra <b class="botao">Configurações › Apps › Treinador 24h › Armazenamento</b> e toque em <b class="botao">Limpar dados</b> (o nome pode variar um pouco conforme o celular).</li>
+  <li>sem desinstalar: no Android, abra <b class="botao">Configurações → Apps → Treinador 24h → Armazenamento</b> e toque em <b class="botao">Limpar dados</b> (o nome pode variar um pouco conforme o celular).</li>
 </ul>
+<p>Isso apaga os dados do aparelho. O backup no Drive e os dados da sincronização são apagados como explicado a seguir.</p>
 
 <h2>Apagar o backup no Google Drive</h2>
-<p>Só vale se você ativou o backup no Drive. A cópia fica numa pasta oculta da sua própria conta Google, e o desenvolvedor não tem acesso a ela.</p>
+<p>Só vale se você conectou uma conta Google no app. A cópia fica numa pasta oculta da sua própria conta Google, e o desenvolvedor não tem acesso a ela.</p>
 <ol>
-  <li>No app, desconecte a conta Google na tela de configurações (<b class="botao">Desconectar</b>), para o backup parar.</li>
-  <li>No computador, abra <a href="https://drive.google.com">drive.google.com</a> e clique na engrenagem, em <b class="botao">Configurações › Gerenciar apps</b>.</li>
+  <li>No app, em <b class="botao">Ajustes → Conta Google</b> (no modo de uma pessoa só, <b class="botao">Mais → Conta Google</b>), toque em <b class="botao">Sair da conta</b>, para o backup parar.</li>
+  <li>No computador, abra <a href="https://drive.google.com">drive.google.com</a> e clique na engrenagem, em <b class="botao">Configurações → Gerenciar apps</b>.</li>
   <li>Em <b class="botao">Treinador 24h</b>, abra <b class="botao">Opções</b> e escolha <b class="botao">Excluir dados ocultos do app</b>.</li>
 </ol>
 
-<h2>Se você é aluno de um personal</h2>
-<p>Quem registra os seus dados no app é o seu personal trainer. Pela LGPD, ele é o controlador desses dados. Peça a ele a exclusão, e ele apaga com o passo a passo acima. Se quiser, peça antes uma cópia dos seus dados: o app gera essa cópia completa.</p>
+<h2>Apagar os dados da sincronização</h2>
+<p>Só vale se você criou ou aceitou uma conexão entre treinador e aluno.</p>
+<ol>
+  <li>Para encerrar uma conexão: no perfil do aluno (treinador) ou em <b class="botao">Mais → Conexão com o treinador</b> (aluno), toque em <b class="botao">Encerrar conexão</b>. A cópia cifrada daquele aluno é apagada do servidor.</li>
+  <li>Para apagar tudo: em <b class="botao">Ajustes → Conta Google</b>, toque em <b class="botao">Excluir conta de sincronização</b>. Todas as conexões são encerradas, o perfil do diretório de treinadores sai do ar e o seu cadastro (nome, e-mail e foto da conta Google) e o identificador de notificação do aparelho são apagados do servidor.</li>
+  <li>Perfil no diretório de treinadores: em <b class="botao">Ajustes → Perfil no diretório</b>, toque em <b class="botao">Tirar do diretório</b>.</li>
+<li>Avisos na hora: ao <b class="botao">Sair da conta</b> (Ajustes → Conta Google), o identificador de notificação deste aparelho é apagado do servidor e os avisos param.</li>
+</ol>
+<p>Os registros de indicação (qual conta usou qual código, sem nome nem e-mail) e os registros de compra conferidos no servidor são apagados a pedido, pelo e-mail abaixo.</p>
+<p>Sem acesso ao app, peça a exclusão por <a href="mailto:contato@gabrieldiniz.com">contato@gabrieldiniz.com</a>, informando o e-mail da conta Google usada. O pedido é atendido em até 30 dias.</p>
+
+<h2>Se você é aluno de um treinador</h2>
+<p>Os dados que o seu treinador registra no app dele ficam com ele: pela LGPD, ele é o controlador desses dados. Peça a ele a exclusão, e ele apaga com o passo a passo acima. Se quiser, peça antes uma cópia dos seus dados: o app gera essa cópia completa.</p>
+<p>Se você usa o app no modo <b class="botao">Tenho um treinador</b>, os dados do seu celular são seus: você pode encerrar a conexão e apagar tudo do seu aparelho a qualquer momento, como explicado acima.</p>
 
 <h2>O que é guardado depois da exclusão</h2>
-<p>Nada. Como o desenvolvedor não recebe dados, não há cópia em servidor, registro ou backup do desenvolvedor para apagar ou manter.</p>
+<p>Nada no servidor de sincronização: depois de encerrar as conexões e excluir a conta de sincronização, não fica cadastro, registro cifrado nem identificador de notificação. Os avisos na hora não ficam guardados: o servidor apaga cada um assim que repassa. Assinaturas são do Google Play: cancele em Google Play → Pagamentos e assinaturas. Os dados que já estavam no aparelho da outra pessoa (o treinador ou o aluno) continuam lá, sob o controle dela.</p>
 
 <h2>Dúvidas</h2>
 <p>Escreva para <a href="mailto:contato@gabrieldiniz.com">contato@gabrieldiniz.com</a>. Veja também a <a href="https://gabrieldiniz.com/treinador-24h-privacy-policy.html">política de privacidade</a>.</p>
